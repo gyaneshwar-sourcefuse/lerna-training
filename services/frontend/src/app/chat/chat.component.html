@@ -1,0 +1,25 @@
+<lib-ngx-notification></lib-ngx-notification>
+<nb-layout>
+  <nb-layout-column class="row">
+    <div class="col-lg-4">
+      <nb-chat title="User" size="medium" class="w-100">
+        <nb-chat-message *ngFor="let msg of messages" [message]="msg.body" [sender]="msg.sender" [reply]="msg.reply">
+        </nb-chat-message>
+        <nb-chat-form (send)="
+            sendMessage($event, 'User', 'http://www.reactiongifs.com/r/wnd1.gif')
+          " [showButton]="false" [dropFiles]="true">
+        </nb-chat-form>
+      </nb-chat>
+    </div>
+    <div class="col-lg-3">
+      <p class="mt-2"><b>Enter Auth Token</b></p>
+        <input [(ngModel)]="token" nbInput />
+        <button (click)="enterToken()" nbButton status="primary" class="ml-1">Ok</button>
+    </div>
+    <div class="col-lg-3">
+      <p class="mt-2"><b>Chat Room</b></p>
+      <button (click)="getMessages()" nbButton status="success" class="mr-2">Join</button>
+      <button (click)="leaveRoom()" nbButton status="warning">Leave</button>
+    </div>
+  </nb-layout-column>
+</nb-layout>
